@@ -5,25 +5,42 @@ import javax.swing.*;
 class TestProject extends JPanel
 				implements ActionListener {
 
-	protected JButton testButton;
+	protected JButton stopButton, testPrintButton;
 
 	public TestProject() {
-		testButton = new JButton("test");
-		testButton.setVerticalTextPosition(SwingConstants.CENTER);
-		testButton.setHorizontalTextPosition(SwingConstants.LEADING);
-		testButton.setMnemonic(KeyEvent.VK_D);
-		testButton.setActionCommand("disable");
+		stopButton = new JButton("Stop");
+		stopButton.setVerticalTextPosition(SwingConstants.CENTER);
+		stopButton.setHorizontalTextPosition(SwingConstants.LEADING);
+		stopButton.setMnemonic(KeyEvent.VK_S);
+		stopButton.setActionCommand("stopButton");
+		stopButton.addActionListener(this);
+		stopButton.setToolTipText("OOGA BOOGA");
 
-		testButton.addActionListener(this);
-		testButton.setToolTipText("OOGA BOOGA");
-		add(testButton);
+		testPrintButton = new JButton("Print");
+		testPrintButton.setVerticalTextPosition(SwingConstants.CENTER);
+		testPrintButton.setHorizontalTextPosition(SwingConstants.LEADING);
+		testPrintButton.setMnemonic(KeyEvent.VK_P);
+		testPrintButton.setActionCommand("printButton");
+		testPrintButton.addActionListener(this);
+		testPrintButton.setToolTipText("YAAAHOOOOOO");
+
+		add(stopButton);
+		add(testPrintButton);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if ("disable".equals(e.getActionCommand())) {
-			testButton.setEnabled(false);
-		} else {
-			testButton.setEnabled(true);
+		switch (e.getActionCommand()) {
+			case "stopButton":
+					stopButton.setEnabled(false);
+					System.exit(0);
+				break;
+			
+			case "printButton":
+					System.out.println("Joe.");
+				break;
+		
+			default:
+				break;
 		}
 	}
 
