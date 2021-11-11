@@ -4,8 +4,7 @@ import javax.swing.*;
 
 class TestProject extends JPanel {
 
-	protected JButton stopButton, testPrintButton;
-	TestProject.GenericButton lineButton;
+	protected JButton stopButton, testPrintButton, lineButton;
 
 	class GenericButton extends JButton implements ActionListener {
 		public GenericButton(String buttonName) {
