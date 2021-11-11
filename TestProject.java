@@ -2,46 +2,49 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-class TestProject extends JPanel
-				implements ActionListener {
+class TestProject extends JPanel {
 
 	protected JButton stopButton, testPrintButton;
+	TestProject.GenericButton lineButton;
+
+	class GenericButton extends JButton implements ActionListener {
+		public GenericButton(String buttonName) {
+			this.setText(buttonName);
+			this.setVerticalTextPosition(SwingConstants.CENTER);
+			this.setHorizontalTextPosition(SwingConstants.LEADING);
+			this.setActionCommand(buttonName);
+			this.addActionListener(this);
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			switch (e.getActionCommand()) {
+				case "Stop":
+						stopButton.setEnabled(false);
+						System.exit(0);
+					break;
+				
+				case "Print":
+						System.out.println("Joe.");
+					break;
+
+				case "Line":
+						System.out.println("Draw Line.");
+					break;
+			
+				default:
+					break;
+			}
+		}		
+	}
 
 	public TestProject() {
-		stopButton = new JButton("Stop");
-		stopButton.setVerticalTextPosition(SwingConstants.CENTER);
-		stopButton.setHorizontalTextPosition(SwingConstants.LEADING);
-		stopButton.setMnemonic(KeyEvent.VK_S);
-		stopButton.setActionCommand("stopButton");
-		stopButton.addActionListener(this);
-		stopButton.setToolTipText("OOGA BOOGA");
-
-		testPrintButton = new JButton("Print");
-		testPrintButton.setVerticalTextPosition(SwingConstants.CENTER);
-		testPrintButton.setHorizontalTextPosition(SwingConstants.LEADING);
-		testPrintButton.setMnemonic(KeyEvent.VK_P);
-		testPrintButton.setActionCommand("printButton");
-		testPrintButton.addActionListener(this);
-		testPrintButton.setToolTipText("YAAAHOOOOOO");
+		stopButton = new GenericButton("Stop");
+		lineButton = new GenericButton("Line");
+		testPrintButton = new GenericButton("Print");
 
 		add(stopButton);
 		add(testPrintButton);
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-			case "stopButton":
-					stopButton.setEnabled(false);
-					System.exit(0);
-				break;
-			
-			case "printButton":
-					System.out.println("Joe.");
-				break;
-		
-			default:
-				break;
-		}
+		add(lineButton);
 	}
 
 	public static void main(String[] args) {
