@@ -1,21 +1,18 @@
 package test_project;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
+// import java.awt.event.*;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+// import javax.swing.text.*;
 
 class TestProject extends JPanel {
 
-	protected static JButton stopButton;
-	protected JButton testPrintButton;
-	protected JButton lineButton;
+	protected static JButton stopButton, testPrintButton, lineButton;
+	protected static JTextField x1Input, y1Input, x2Input, y2Input;
+	protected static JLabel x1InputLabel, y1InputLabel, x2InputLabel, y2InputLabel, actionLabel;
+
 	private static final LinkedList<Line> lines = new LinkedList<>();
 	public static final TestProject comp = new TestProject();
 
@@ -55,29 +52,48 @@ class TestProject extends JPanel {
 	}
 
 	public TestProject() {
+		setLayout(new BorderLayout());
+
+		// create coordinate input labels
+		x1InputLabel = new JLabel("X1: ");
+		y1InputLabel = new JLabel("Y1: ");
+		x2InputLabel = new JLabel("X2: ");
+		y2InputLabel = new JLabel("Y2: ");
+		JLabel[] inputLabels = {x1InputLabel, y1InputLabel, x2InputLabel, y2InputLabel};
+
+		// create coordinate inputs
+		x1Input = new test_project.GenericTextBox(x1InputLabel, "x1", 5);
+		y1Input = new test_project.GenericTextBox(y1InputLabel, "y1", 5);
+		x2Input = new test_project.GenericTextBox(x2InputLabel, "x2", 5);
+		y2Input = new test_project.GenericTextBox(y2InputLabel, "y2", 5);
+		JTextField[] inputFields = {x1Input, x2Input, y1Input, y2Input};
+
+		actionLabel = new JLabel("Type text in a field and press Enter.");
+        actionLabel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
+
+		// create buttons
 		stopButton = new test_project.GenericButton("Stop");
 		lineButton = new test_project.GenericButton("Line");
 		testPrintButton = new test_project.GenericButton("Print");
+		JButton[] buttons = {stopButton, lineButton, testPrintButton};
 
+		//Lay out the text controls and the labels.
+        JPanel textControlsPane = new JPanel();
+        GridBagLayout gridbag = new GridBagLayout();
+        GridBagConstraints c = new GridBagConstraints();
+
+		textControlsPane.setLayout(gridbag);
+        AddLabelTextRows.main(inputLabels, inputFields, gridbag, textControlsPane);
+
+		JPanel leftPane = new JPanel(new BorderLayout());
+        leftPane.add(textControlsPane, 
+			BorderLayout.PAGE_START);
+
+		// add everything
+		add(leftPane, BorderLayout.LINE_START);
 		add(stopButton);
 		add(testPrintButton);
 		add(lineButton);
-	}
-
-	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(() -> {
-			//Create and set up the window.
-			JFrame frame = new JFrame("Test Window");
-			frame.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-			//Create blank label in content plane
-			comp.setPreferredSize(new Dimension(1000, 600));
-			frame.getContentPane().add(comp, BorderLayout.CENTER);
-
-			//Display the window.
-			frame.pack();
-			frame.setVisible(true);
-		});
 	}
 }
 
