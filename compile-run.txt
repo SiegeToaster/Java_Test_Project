@@ -1,0 +1,8 @@
+Compile:
+in \JavaTestProject\test_project
+javac Line.java GenericTextBox.java GenericButton.java AddLabelTextRows.java TestProject.java QuickStart.java
+
+
+Run:
+in \JavaTestProject
+java test_project/QuickStart
