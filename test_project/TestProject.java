@@ -74,26 +74,32 @@ class TestProject extends JPanel {
 		// create buttons
 		stopButton = new test_project.GenericButton("Stop");
 		lineButton = new test_project.GenericButton("Line");
-		testPrintButton = new test_project.GenericButton("Print");
-		JButton[] buttons = {stopButton, lineButton, testPrintButton};
+		JButton[] buttons = {stopButton, lineButton};
 
-		//Lay out the text controls and the labels.
+		// Lay out the text controls and the labels.
         JPanel textControlsPane = new JPanel();
         GridBagLayout gridbag = new GridBagLayout();
-        GridBagConstraints c = new GridBagConstraints();
-
 		textControlsPane.setLayout(gridbag);
-        AddLabelTextRows.main(inputLabels, inputFields, gridbag, textControlsPane);
+        BuildJPanel.labelTextRows(inputLabels, inputFields, textControlsPane);
 
+		// Lay out buttons
+		JPanel buttonsPane = new JPanel();
+		buttonsPane.setLayout(gridbag);
+		BuildJPanel.buttons(buttons, buttonsPane);
+
+		// Construct main control JPanel
 		JPanel leftPane = new JPanel(new BorderLayout());
-        leftPane.add(textControlsPane, 
-			BorderLayout.PAGE_START);
+        leftPane.add(
+			textControlsPane, 
+			BorderLayout.PAGE_START
+		);
+		leftPane.add(
+			buttonsPane,
+			BorderLayout.CENTER
+		);
 
 		// add everything
 		add(leftPane, BorderLayout.LINE_START);
-		add(stopButton);
-		add(testPrintButton);
-		add(lineButton);
 	}
 }
 
