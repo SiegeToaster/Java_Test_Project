@@ -66,7 +66,7 @@ class TestProject extends JPanel {
 		y1Input = new test_project.GenericTextBox(y1InputLabel, "y1", 5);
 		x2Input = new test_project.GenericTextBox(x2InputLabel, "x2", 5);
 		y2Input = new test_project.GenericTextBox(y2InputLabel, "y2", 5);
-		JTextField[] inputFields = {x1Input, x2Input, y1Input, y2Input};
+		JTextField[] inputFields = {x1Input, x2Input, y1Input, y2Input}; //ToDo: find a way to put this at top level and make getInputFields() thing
 
 		actionLabel = new JLabel("Type text in a field and press Enter.");
         actionLabel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));

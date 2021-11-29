@@ -20,16 +20,13 @@ class GenericButton extends JButton implements ActionListener {
 					System.exit(0);
 				break;
 			
-			case "Print":
-					System.out.println("Joe.");
-				break;
-
 			case "Line":
 					System.out.println("Draw Line.");
+					// System.out.println(TestProject.getInputFields()[0].getInputContext());
 					int x1 = (int) (Math.random()*1000);
 					int x2 = (int) (Math.random()*1000);
 					int y1 = (int) (Math.random()*600);
-					int y2 = (int) (Math.random()*600);
+					int y2 = (int) (Math.random()*600); // ToDo: get inputs from text boxes and put em here
 					Color randomColor = new Color((float)Math.random(), (float)Math.random(), (float)Math.random());
 					TestProject.getComp().addLine(x1, y1, x2, y2, randomColor);
 				break;
