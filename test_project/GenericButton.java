@@ -22,7 +22,10 @@ class GenericButton extends JButton implements ActionListener {
 			
 			case "Line":
 					System.out.println("Draw Line.");
-					// System.out.println(TestProject.getInputFields()[0].getInputContext());
+					System.out.println(TestProject.getTextFields()[0].getText());
+					System.out.println(TestProject.getTextFields()[1].getText());
+					System.out.println(TestProject.getTextFields()[2].getText());
+					System.out.println(TestProject.getTextFields()[3].getText());
 					int x1 = (int) (Math.random()*1000);
 					int x2 = (int) (Math.random()*1000);
 					int y1 = (int) (Math.random()*600);

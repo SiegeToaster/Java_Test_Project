@@ -17,6 +17,7 @@ public class QuickStart {
 
 			//Display the window.
 			frame.pack();
+			comp.buildGrid();
 			frame.setVisible(true);
 		});
 	}

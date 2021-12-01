@@ -15,6 +15,7 @@ class TestProject extends JPanel {
 
 	private static final LinkedList<Line> lines = new LinkedList<>();
 	public static final TestProject comp = new TestProject();
+	protected static JTextField[] textFieldArr = {x1Input, y1Input, x2Input, y2Input};
 
 	public static JButton getStopButton() {
 		return stopButton;
@@ -26,6 +27,10 @@ class TestProject extends JPanel {
 
 	public static List<Line> getLines() {
 		return lines;
+	}
+
+	public static JTextField[] getTextFields() {
+		return textFieldArr;
 	}
 
 	public void addLine(int x1, int x2, int x3, int x4) {
@@ -40,6 +45,23 @@ class TestProject extends JPanel {
 	public void clearLines() {
 		TestProject.getLines().clear();
 		repaint();
+	}
+
+	public void buildGrid() {
+		// addLine(x1, y1, x2, y2, (color))
+		// left boundry = 150px
+		// right boundry = 974
+		// top boundry = 25px
+		// bottom boundry = 575
+		// midVertical = 562
+		// midHorizontal = 300
+		// middle point = 275, 300
+		addLine(150, 25, 150, 575); // left
+		addLine(150, 25, 974, 25); // top
+		addLine(974, 25, 974, 575); // right
+		addLine(974, 575, 150, 575); // bottom
+		addLine(150, 300, 974, 300); // midHorizontal
+		addLine(562, 25, 562, 575); // midVertical
 	}
 
 	@Override
