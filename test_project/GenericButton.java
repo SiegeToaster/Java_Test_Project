@@ -22,7 +22,7 @@ class GenericButton extends JButton implements ActionListener {
 			
 			case "Line":
 					System.out.println("Draw Line.");
-					// middle point = 275, 300
+					// middle point = 563, 300 (x-value is not exact)
 					JTextField[] inputArr = TestProject.getTextFields();
 					Integer x1 = Integer.parseInt(inputArr[0].getText());
 					Integer x2 = Integer.parseInt(inputArr[1].getText());
